@@ -112,40 +112,40 @@ elif st.session_state.page == 2:
         next_page()
 
 elif st.session_state.page == 2:
-# Define PHQ-9 questions and scoring function
-questions = [
-	"Little interest or pleasure in doing things.",
-		"Feeling down, depressed, or hopeless.",
-	"Trouble falling or staying asleep, or sleeping too much.",
-		"Feeling tired or having little energy.",
-	"Poor appetite or overeating.",
-	"Feeling bad about yourself — or that you are a failure or have let yourself or your family down.",
-	"Trouble concentrating on things, such as reading the newspaper or watching television.",
-	"Moving or speaking so slowly that other people could have noticed? Or the opposite — being so fidgety or restless that you have been moving around a lot more than usual.",
-	"Thoughts that you would be better off dead, or thoughts of hurting yourself in some way."
-]
+	# Define PHQ-9 questions and scoring function
+	questions = [
+		"Little interest or pleasure in doing things.",
+			"Feeling down, depressed, or hopeless.",
+		"Trouble falling or staying asleep, or sleeping too much.",
+			"Feeling tired or having little energy.",
+		"Poor appetite or overeating.",
+		"Feeling bad about yourself — or that you are a failure or have let yourself or your family down.",
+		"Trouble concentrating on things, such as reading the newspaper or watching television.",
+		"Moving or speaking so slowly that other people could have noticed? Or the opposite — being so fidgety or restless that you have been moving around a lot more than usual.",
+		"Thoughts that you would be better off dead, or thoughts of hurting yourself in some way."
+	]
 
-st.title("PHQ-9 Depression Assessment")
-st.write("""
-The Patient Health Questionnaire-9 (PHQ-9) is a clinical tool used to assess the severity of depression. Please rate how often you have been bothered by each of the following problems over the past two weeks.
-- 0: Not at all
-- 1: Several days
-- 2: More than half the days
-- 3: Nearly every day
-""")
+	st.title("PHQ-9 Depression Assessment")
+	st.write("""
+	The Patient Health Questionnaire-9 (PHQ-9) is a clinical tool used to assess the severity of depression. Please rate how often you have been bothered by each of the following problems over the past two weeks.
+	- 0: Not at all
+	- 1: Several days
+	- 2: More than half the days
+	- 3: Nearly every day
+	""")
 
-# Gather user input
-responses = []
-for i, question in enumerate(questions):
-		response = st.slider(question, 0, 3, 0)
-		responses.append(response)
+	# Gather user input
+	responses = []
+	for i, question in enumerate(questions):
+			response = st.slider(question, 0, 3, 0)
+			responses.append(response)
 
-# Calculate score
-def calculate_phq9_score(responses):
+	# Calculate score
+	def calculate_phq9_score(responses):
 		return sum(responses)
 
-# Score interpretation
-def interpret_score(score):
+	# Score interpretation
+	def interpret_score(score):
 		if score >= 20:
     		return "Severe depression"
 		elif 15 <= score < 20:
@@ -157,9 +157,9 @@ def interpret_score(score):
 	else:
     		return "Minimal or no depression"
 
-# Display the results
-if st.button("Calculate Depression Severity Score"):
-	score = calculate_phq9_score(responses)
-	interpretation = interpret_score(score)
-	st.write(f"Your PHQ-9 Score is: {score}")
-	st.write(f"Interpretation: {interpretation}")
+	# Display the results
+	if st.button("Calculate Depression Severity Score"):
+		score = calculate_phq9_score(responses)
+		interpretation = interpret_score(score)
+		st.write(f"Your PHQ-9 Score is: {score}")
+		st.write(f"Interpretation: {interpretation}")
