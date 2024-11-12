@@ -146,11 +146,11 @@ elif st.session_state.page == 2:
 
 	# Score interpretation
 	def interpret_score(score):
-		if score >= 20:
+	if score >= 20:
     		return "Severe depression"
-		elif 15 <= score < 20:
+	elif 15 <= score < 20:
     		return "Moderately severe depression"
-		elif 10 <= score < 15:
+	elif 10 <= score < 15:
     		return "Moderate depression"
 	elif 5 <= score < 10:
     		return "Mild depression"
