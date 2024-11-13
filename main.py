@@ -26,7 +26,8 @@ if st.session_state.page == 1:
     st.title("Rosenberg Self-Esteem Scale")
     st.write("Please rate your agreement with each statement from 1 (Strongly Disagree) to 4 (Strongly Agree).")
 
-    # Gather user input
+    # Gather user input, but first set it to null
+    SE_responses = None
     SE_responses = [st.slider(question, 1, 4, 2) for question in questions]
 
     # Calculate score
@@ -80,6 +81,7 @@ elif st.session_state.page == 2:
     st.write("Please rate your agreement with each statement from 1 (Almost Never) to 4 (Almost Always).")
 
     # Gather user input
+    TA_responses = None
     TA_responses = [st.slider(question, 1, 4, 2) for question in questions]
 
     # Calculate score
@@ -128,6 +130,7 @@ elif st.session_state.page == 3:
     """)
 
     # Gather user input
+    DE_responses = None
     DE_responses = [st.slider(question, 0, 3, 0) for question in questions]
 
     # Calculate score
