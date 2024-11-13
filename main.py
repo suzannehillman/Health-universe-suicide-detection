@@ -30,15 +30,15 @@ if st.session_state.page == 1:
     SE_responses = [st.slider(question, 1, 4, 2) for question in questions]
 
     # Calculate score
-    def calculate_rosenberg_score(SE_responses):
+    def calculate_rosenberg_score(responses):
         reverse_indices = [2, 4, 7, 8, 9]
-        return sum(5 - SE_responses[i] if i in reverse_indices else SE_responses[i] for i in range(len(SE_responses)))
+        return sum(5 - responses[i] if i in reverse_indices else responses[i] for i in range(len(responses)))
 
     # Score interpretation
-    def interpret_rosenberg_score(SE_score):
-        if SE_score >= 30:
+    def interpret_rosenberg_score(score):
+        if score >= 30:
             return "High self-esteem"
-        elif 15 <= SE_score < 30:
+        elif 15 <= score < 30:
             return "Average self-esteem"
         else:
             return "Low self-esteem"
@@ -83,15 +83,15 @@ elif st.session_state.page == 2:
     TA_responses = [st.slider(question, 1, 4, 2) for question in questions]
 
     # Calculate score
-    def calculate_stai_score(TA_responses):
+    def calculate_stai_score(responses):
         reverse_indices = [0, 2, 5, 6, 9, 12, 13, 15, 18]
-        return sum(5 - TA_responses[i] if i in reverse_indices else TA_responses[i] for i in range(len(TA_responses)))
+        return sum(5 - responses[i] if i in reverse_indices else responses[i] for i in range(len(responses)))
 
     # Score interpretation
-    def interpret_stai_score(TA_score):
-        if TA_score >= 45:
+    def interpret_stai_score(score):
+        if score >= 45:
             return "High trait anxiety"
-        elif 36 <= TA_score < 45:
+        elif 36 <= score < 45:
             return "Moderate trait anxiety"
         else:
             return "Low trait anxiety"
@@ -131,18 +131,18 @@ elif st.session_state.page == 3:
     DE_responses = [st.slider(question, 0, 3, 0) for question in questions]
 
     # Calculate score
-    def calculate_phq9_score(DE_responses):
-        return sum(DE_responses)
+    def calculate_phq9_score(responses):
+        return sum(responses)
 
     # Score interpretation
-    def interpret_phq9_score(DE_score):
-        if DE_score >= 20:
+    def interpret_phq9_score(score):
+        if score >= 20:
             return "Severe depression"
-        elif 15 <= DE_score < 20:
+        elif 15 <= score < 20:
             return "Moderately severe depression"
-        elif 10 <= DE_score < 15:
+        elif 10 <= score < 15:
             return "Moderate depression"
-        elif 5 <= DE_score < 10:
+        elif 5 <= score < 10:
             return "Mild depression"
         else:
             return "Minimal or no depression"
