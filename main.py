@@ -9,6 +9,12 @@ def next_page():
 
 # ---------------- Rosenberg Self-Esteem Scale Page ----------------
 if st.session_state.page == 1:
+    # initialize session state for scores and interpretations
+    if 'SE_score' not in st.session_state:
+        st.session_state.SE_score = ""
+    if 'SE_interpretation' not in st.session_state:
+        st.session_state.SE_interpretation = ""
+
     # Define Rosenberg Scale questions
     questions = [
         "I feel that I am a person of worth, at least on an equal plane with others.",
@@ -27,8 +33,7 @@ if st.session_state.page == 1:
     st.write("Please rate your agreement with each statement from 1 (Strongly Disagree) to 4 (Strongly Agree).")
 
     # Gather user input, but first set it to null
-    SE_responses = None
-    SE_responses = [st.slider(question, 1, 4, 2) for question in questions]
+    responses = [st.slider(question, 1, 4, 2) for question in questions]
 
     # Calculate score
     def calculate_rosenberg_score(responses):
@@ -45,14 +50,20 @@ if st.session_state.page == 1:
             return "Low self-esteem"
 
     # Calculate and interpret Rosenberg score on the final page
-    SE_score = calculate_rosenberg_score(SE_responses)
-    SE_interpretation = interpret_rosenberg_score(SE_score)
+    st.session_state.SE_score = calculate_rosenberg_score(responses)
+    st.session_state.SE_interpretation = interpret_rosenberg_score(st.session_state.SE_score)
     
     if st.button("Next"):
         next_page()
 
 # ---------------- STAI-YB Trait Anxiety Scale Page ----------------
 elif st.session_state.page == 2:
+    # initialize session state for scores and interpretations
+    if 'TA_score' not in st.session_state:
+        st.session_state.TA_score = ""
+    if 'TA_interpretation' not in st.session_state:
+        st.session_state.TA_interpretation = ""
+
     # Define STAI-YB questions
     questions = [
         "I feel pleasant.",
@@ -81,8 +92,7 @@ elif st.session_state.page == 2:
     st.write("Please rate your agreement with each statement from 1 (Almost Never) to 4 (Almost Always).")
 
     # Gather user input
-    TA_responses = None
-    TA_responses = [st.slider(question, 1, 4, 2) for question in questions]
+    responses = [st.slider(question, 1, 4, 2) for question in questions]
 
     # Calculate score
     def calculate_stai_score(responses):
@@ -99,14 +109,20 @@ elif st.session_state.page == 2:
             return "Low trait anxiety"
 
     # Calculate and interpret STAI score on the final page
-    TA_score = calculate_stai_score(TA_responses)
-    TA_interpretation = interpret_stai_score(TA_score)
+    st.session_state.TA_score = calculate_stai_score(responses)
+    st.session_state.TA_interpretation = interpret_stai_score(st.session_state.TA_score)
     
     if st.button("Next"):
         next_page()
 
 # ---------------- PHQ-9 Depression Scale ----------------
 elif st.session_state.page == 3:
+        # initialize session state for scores and interpretations
+    if 'DE_score' not in st.session_state:
+        st.session_state.DE_score = ""
+    if 'DE_interpretation' not in st.session_state:
+        st.session_state.DE_interpretation = ""
+
     # Define PHQ-9 questions
     questions = [
         "Little interest or pleasure in doing things.",
@@ -130,8 +146,7 @@ elif st.session_state.page == 3:
     """)
 
     # Gather user input
-    DE_responses = None
-    DE_responses = [st.slider(question, 0, 3, 0) for question in questions]
+    responses = [st.slider(question, 0, 3, 0) for question in questions]
 
     # Calculate score
     def calculate_phq9_score(responses):
@@ -151,14 +166,21 @@ elif st.session_state.page == 3:
             return "Minimal or no depression"
 
     # Calculate and interpret PHQ-9 score on the final page
-    DE_score = calculate_phq9_score(DE_responses)
-    DE_interpretation = interpret_phq9_score(DE_score)
+    st.session_state.DE_score = calculate_phq9_score(responses)
+    st.session_state.DE_interpretation = interpret_phq9_score(st.session_state.DE_score)
     
     if st.button("Next"):
         next_page()
 
 # ---------------- Scores and interpretations ----------------
 elif st.session_state.page == 4:
+    #grab the scores and interpretations from session state
+    SE_score = st.session_state.get("SE_score", "")
+    SE_interpretation = st.session_state.get("SE_interpretation", "")
+    TA_score = st.session_state.get("TA_score", "")
+    TA_interpretation = st.session_state.get("TA_interpretation", "")
+    DE_score = st.session_state.get("DE_score", "")
+    DE_interpretation = st.session_state.get("DE_interpretation", "")
     st.title("Results Summary")
     
     st.write(f"Your Rosenberg Self-Esteem Score is: {SE_score}")
