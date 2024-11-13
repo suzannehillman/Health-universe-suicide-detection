@@ -7,11 +7,6 @@ if "page" not in st.session_state:
 def next_page():
     st.session_state.page += 1
 
-# Initializing score and interpretation variables for final page access
-SE_score, SE_interpretation = None, None
-TA_score, TA_interpretation = None, None
-DE_score, DE_interpretation = None, None
-
 # ---------------- Rosenberg Self-Esteem Scale Page ----------------
 if st.session_state.page == 1:
     # Define Rosenberg Scale questions
