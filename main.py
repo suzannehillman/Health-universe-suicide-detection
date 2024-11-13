@@ -31,18 +31,18 @@ if st.session_state.page == 1:
 
 	# Calculate score
 	def calculate_rosenberg_score(SE_responses):
-    	reverse_indices = [2, 4, 7, 8, 9]
-    	SE_score = sum(5 - SE_responses[i] if i in reverse_indices else SE_responses[i] for i in range(len(SE_responses)))
-    	return SE_score
+    		reverse_indices = [2, 4, 7, 8, 9]
+    		SE_score = sum(5 - SE_responses[i] if i in reverse_indices else SE_responses[i] for i in range(len(SE_responses)))
+	    	return SE_score
 
 	# Score interpretation
 	def interpret_rosenberg_score(SE_score):
-    	if SE_score >= 30:
-        	return "High self-esteem"
-    	elif 15 <= SE_score < 30:
-        	return "Average self-esteem"
-    	else:
-        	return "Low self-esteem"
+    		if SE_score >= 30:
+	        	return "High self-esteem"
+    		elif 15 <= SE_score < 30:
+        		return "Average self-esteem"
+    		else:
+        		return "Low self-esteem"
 
 	# Display the results and "Next" button
 	SE_score = calculate_rosenberg_score(SE_responses)
@@ -85,22 +85,21 @@ elif st.session_state.page == 2:
 
 	# Calculate score
 	def calculate_stai_score(TA_responses):
-    	reverse_indices = [0, 2, 5, 6, 9, 12, 13, 15, 18]
-    	TA_score = sum(5 - TA_responses[i] if i in reverse_indices else TA_responses[i] for i in range(len(TA_responses)))
-    	return TA_score
+	    	reverse_indices = [0, 2, 5, 6, 9, 12, 13, 15, 18]
+	    	TA_score = sum(5 - TA_responses[i] if i in reverse_indices else TA_responses[i] for i in range(len(TA_responses)))
+	    	return TA_score
 
 	# Score interpretation
 	def interpret_stai_score(TA_score):
-    	if TA_score >= 45:
-        	return "High trait anxiety"
-    	elif 36 <= TA_score < 45:
-        	return "Moderate trait anxiety"
-    	else:
-        	return "Low trait anxiety"
+	    	if TA_score >= 45:
+	        	return "High trait anxiety"
+	    	elif 36 <= TA_score < 45:
+	        	return "Moderate trait anxiety"
+	    	else:
+	        	return "Low trait anxiety"
 
 	# Display the results and "Next" button
-	if st.button("Calculate Trait Anxiety Score"):
-    	TA_score = calculate_stai_score(TA_responses)
+	TA_score = calculate_stai_score(TA_responses)
     	TA_interpretation = interpret_stai_score(TA_score)
     
 	if st.button("Next"):
@@ -135,20 +134,20 @@ elif st.session_state.page == 3:
 
 	# Calculate score
 	def calculate_phq9_score(DE_responses):
-    	return sum(DE_responses)
+    		return sum(DE_responses)
 
 	# Score interpretation
 	def interpret_phq9_score(DE_score):
-    	if DE_score >= 20:
-        	return "Severe depression"
-    	elif 15 <= DE_score < 20:
-        	return "Moderately severe depression"
-    	elif 10 <= DE_score < 15:
-        	return "Moderate depression"
-    	elif 5 <= DE_score < 10:
-        	return "Mild depression"
-    	else:
-        	return "Minimal or no depression"
+	    	if DE_score >= 20:
+	        	return "Severe depression"
+	    	elif 15 <= DE_score < 20:
+	        	return "Moderately severe depression"
+	    	elif 10 <= DE_score < 15:
+	        	return "Moderate depression"
+	    	elif 5 <= DE_score < 10:
+	        	return "Mild depression"
+	    	else:
+	        	return "Minimal or no depression"
 
 	# Display the results
 	DE_score = calculate_phq9_score(DE_responses)
